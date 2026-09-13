@@ -1,17 +1,25 @@
-import { CheckoutValidator, ValidationError } from './checkout.validator';
+import { CheckoutValidator, ValidationError, CheckoutRequest } from './checkout.validator';
 
 describe('CheckoutValidator', () => {
-  const v = new CheckoutValidator();
-
-  it('accepts a valid checkout', () => {
-    expect(v.validate({ guest: false, country: 'US', items: 2 })).toEqual({ ok: true });
+  let validator: CheckoutValidator;
+  beforeEach(() => {
+    validator = new CheckoutValidator();
   });
 
-  it('rejects an empty cart', () => {
-    expect(() => v.validate({ guest: false, country: 'US', items: 0 })).toThrow(ValidationError);
+  it('throws ValidationError if country is null', () => {
+    const req: CheckoutRequest = { guest: true, country: null, items: 2 };
+    expect(() => validator.validate(req)).toThrow(ValidationError);
+    expect(() => validator.validate(req)).toThrow('Country is required');
   });
 
-  it('rejects an unsupported country', () => {
-    expect(() => v.validate({ guest: false, country: 'ZZ', items: 1 })).toThrow(ValidationError);
+  it('throws ValidationError if country is not supported', () => {
+    const req: CheckoutRequest = { guest: false, country: 'ZZ', items: 1 };
+    expect(() => validator.validate(req)).toThrow(ValidationError);
+    expect(() => validator.validate(req)).toThrow('Country ZZ is not supported');
   });
-});
+
+  it('passes for supported country', () => {
+    const req: CheckoutRequest = { guest: false, country: 'us', items: 1 };
+    expect(validator.validate(req)).toEqual({ ok: true });
+  });
+})

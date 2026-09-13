@@ -14,4 +14,12 @@ describe('CheckoutValidator', () => {
   it('rejects an unsupported country', () => {
     expect(() => v.validate({ guest: false, country: 'ZZ', items: 1 })).toThrow(ValidationError);
   });
+
+  it('accepts Australia (AU) as a supported country', () => {
+    expect(v.validate({ guest: true, country: 'AU', items: 1 })).toEqual({ ok: true });
+  });
+
+  it('accepts Japan (JP) as a supported country', () => {
+    expect(v.validate({ guest: false, country: 'JP', items: 3 })).toEqual({ ok: true });
+  });
 });

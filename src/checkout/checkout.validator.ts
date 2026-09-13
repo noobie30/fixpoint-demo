@@ -27,6 +27,9 @@ export class CheckoutValidator {
   }
 
   private validateCountry(req: CheckoutRequest): void {
+    if (!req.country || typeof req.country !== 'string') {
+      throw new ValidationError('Country is required');
+    }
     // refactor: normalize country up-front for cleaner comparison
     const normalized = req.country.toUpperCase();
     if (!SUPPORTED_COUNTRIES.includes(normalized)) {

@@ -11,7 +11,7 @@ export interface CheckoutRequest {
   items: number;
 }
 
-const SUPPORTED_COUNTRIES = ['US', 'CA', 'GB', 'DE', 'FR', 'IN'];
+const SUPPORTED_COUNTRIES = ['US', 'CA', 'GB', 'DE', 'FR', 'IN', 'AU', 'JP'];
 
 export class CheckoutValidator {
   validate(req: CheckoutRequest): { ok: true } {

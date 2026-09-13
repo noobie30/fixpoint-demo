@@ -1,0 +1,26 @@
+{
+  "name": "checkout-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Demo checkout service (Fixpoint target repo). Intentionally seeded with a regression.",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint \"src/**/*.ts\""
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.5.5",
+    "@typescript-eslint/eslint-plugin": "^8.6.0",
+    "@typescript-eslint/parser": "^8.6.0",
+    "eslint": "^8.57.1",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.2"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "roots": ["<rootDir>/src"],
+    "testMatch": ["**/*.spec.ts"]
+  }
+}

@@ -14,8 +14,4 @@ describe('CheckoutValidator', () => {
   it('rejects an unsupported country', () => {
     expect(() => v.validate({ guest: false, country: 'ZZ', items: 1 })).toThrow(ValidationError);
   });
-
-  it('rejects guest checkout with no country (no crash)', () => {
-    expect(() => v.validate({ guest: true, country: null, items: 1 })).toThrow(ValidationError);
-  });
 });

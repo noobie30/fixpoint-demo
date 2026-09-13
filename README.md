@@ -13,3 +13,7 @@ Fixpoint detects the incident, correlates it to the offending PR, opens a **reve
 npm install
 npm test
 ```
+
+## Running tests
+
+`npm test` runs the Jest suite.
